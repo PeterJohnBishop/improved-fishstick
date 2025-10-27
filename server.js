@@ -117,7 +117,7 @@ app.get('/saml/sso', async (req, res) => {
         nameIDFormat: 'urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress',
       },
       attributes,
-    }, 'https://app.clickup.com/saml/acs'); // replace with actual ACS from ClickUp
+    }, 'https://api.clickup.com/v1/team/36226098/saml/consume'); // replace with actual ACS from ClickUp
 
     // Respond with an HTML form that auto-submits to the SP's ACS (HTTP-POST binding)
     res.type('html').send(samlResponse);

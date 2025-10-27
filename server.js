@@ -76,9 +76,9 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
   // Authenticate user (replace with real auth)
-  const username = req.body.username || 'demo.user@example.com';
+  const username = req.body.username || 'sso+pbishop@clickup.com';
   // store session
-  req.session.user = { id: username, email: username, firstName: 'Demo', lastName: 'User' };
+  req.session.user = { id: username, email: username, firstName: 'Peter', lastName: 'SSO' };
 
   // after login, redirect to same /saml/sso flow with original query (RelayState, SAMLRequest)
   // in a real flow, the SP initiates and provides SAMLRequest/RelayState; we must respond to that.

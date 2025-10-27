@@ -18,7 +18,9 @@ const privateKeyPath = process.env.IDP_PRIVATE_KEY_PATH;
 const publicCertPath = process.env.IDP_PUBLIC_CERT_PATH;
 const idpPrivateKey = Buffer.from(process.env.IDP_PRIVATE_KEY, 'base64').toString('utf-8');
 const idpPublicCert = Buffer.from(process.env.IDP_PUBLIC_CERT, 'base64').toString('utf-8');
+const spCert = Buffer.from(process.env.SP_CERT, 'base64').toString('utf-8');
 const baseURL = "https://improved-fishstick-6aabdda5d171.herokuapp.com/"
+
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -51,11 +53,12 @@ const idp = IdentityProvider({
 // You'll replace the placeholders with ClickUp's SP EntityID and ACS URL (Assertion Consumer Service)
 // For now, put placeholders which you'll update after you get ClickUp metadata.
 const sp = ServiceProvider({
-  entityID: 'https://app.clickup.com/saml/metadata', // placeholder — replace with ClickUp SP entity ID
+  entityID: 'https://api.clickup.com/v1/team/36226098/saml', // placeholder — replace with ClickUp SP entity ID
   assertionConsumerService: [{
     Binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-    Location: 'https://app.clickup.com/saml/acs', // placeholder — replace with ClickUp ACS URL
+    Location: 'https://api.clickup.com/v1/team/36226098/saml/consume', // placeholder — replace with ClickUp ACS URL
   }],
+  signingCert: spCert, 
   // optionally set wantAuthnRequestsSigned, signature algorithms, etc.
 });
 

@@ -18,6 +18,7 @@ const privateKeyPath = process.env.IDP_PRIVATE_KEY_PATH;
 const publicCertPath = process.env.IDP_PUBLIC_CERT_PATH;
 const idpPrivateKey = Buffer.from(process.env.IDP_PRIVATE_KEY, 'base64').toString('utf-8');
 const idpPublicCert = Buffer.from(process.env.IDP_PUBLIC_CERT, 'base64').toString('utf-8');
+const baseURL = "https://improved-fishstick-6aabdda5d171.herokuapp.com/"
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -37,11 +38,11 @@ const idp = IdentityProvider({
   privateKey: idpPrivateKey.toString(),
   singleSignOnService: [{
     Binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-    Location: 'https://your-sso.example.com/saml/sso', // replace with your public url + route
+    Location: `${baseURL}/saml/sso`, // replace with your public url + route
   }],
   singleLogoutService: [{
     Binding: 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-    Location: 'https://your-sso.example.com/saml/logout',
+    Location: `${baseURL}/saml/logout`,
   }],
   // optional: nameID formats and more
 });
@@ -131,6 +132,6 @@ app.post('/saml/acs', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`IdP running on http://localhost:${PORT}`);
-  console.log(`Metadata available at http://localhost:${PORT}/metadata`);
+  console.log(`IdP running on ${baseURL}`);
+  console.log(`Metadata available at ${baseURL}/metadata`);
 });

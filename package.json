@@ -1,0 +1,29 @@
+{
+  "name": "improved-fishstick",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+"scripts": {
+  "start": "node server.js"
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PeterJohnBishop/improved-fishstick.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PeterJohnBishop/improved-fishstick/issues"
+  },
+  "homepage": "https://github.com/PeterJohnBishop/improved-fishstick#readme",
+  "dependencies": {
+    "@authenio/samlify-node-xmllint": "^2.0.0",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "samlify": "^2.10.1"
+  }
+}
